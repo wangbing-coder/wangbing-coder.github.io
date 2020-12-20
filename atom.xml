@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wangbing-coder.github.io</id>
     <title>王加冰</title>
-    <updated>2020-12-20T14:04:50.298Z</updated>
+    <updated>2020-12-20T14:10:46.460Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wangbing-coder.github.io"/>
     <link rel="self" href="https://wangbing-coder.github.io/atom.xml"/>
@@ -55,6 +55,8 @@
 <p><strong>趣学Python编程</strong>，虽然是14年出版的，但是让小孩子了解学习，还是够用的。</p>
 <p>下载链接：<mark><a href="https://474b.com/file/30410245-476830403">孩子书籍下载</a></mark></p>
 <p>希望大家在知识的海洋中继续兴风作浪～😄</p>
+<figure data-type="image" tabindex="1"><img src="https://wangbing-coder.github.io/post-images/1608473280553.jpeg" alt="" loading="lazy"></figure>
+<center>如果有其他书籍需要，可以添加我的个人微信</center>
 ]]></content>
     </entry>
 </feed>
