@@ -70,7 +70,7 @@ This avoids exposing a write token in the browser.
 ## Recommended Maintenance Flow
 
 1. A visitor submits a site through the Add Site form.
-2. Review the generated GitHub issue.
-3. Copy the JSON entry into the right group in `data/sites.json`.
-4. Commit and push the update.
-5. GitHub Actions validates and deploys the site.
+2. GitHub Actions creates a pull request from the issue.
+3. Review the generated PR.
+4. Merge the PR if the site entry is approved.
+5. GitHub Actions validates and deploys the updated site.

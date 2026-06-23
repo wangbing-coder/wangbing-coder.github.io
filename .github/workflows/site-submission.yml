@@ -1,0 +1,49 @@
+name: Create PR from site submission
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  create-pr:
+    if: startsWith(github.event.issue.title, 'Add site:')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Apply site submission
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: node scripts/apply-site-submission.mjs
+
+      - name: Validate site
+        run: node scripts/validate-site.mjs
+
+      - name: Create pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+        run: |
+          branch="site-submission-${ISSUE_NUMBER}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add data/sites.json
+          git commit -m "${ISSUE_TITLE}"
+          git push --set-upstream origin "$branch"
+          pr_url=$(gh pr create --base master --head "$branch" --title "${ISSUE_TITLE}" --body "Closes #${ISSUE_NUMBER}")
+          gh issue comment "$ISSUE_NUMBER" --body "Created PR: ${pr_url}"

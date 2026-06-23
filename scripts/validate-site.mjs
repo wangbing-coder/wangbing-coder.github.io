@@ -10,6 +10,8 @@ const assert = (condition, message) => {
 
 const jsonFile = "data/sites.json";
 const workflowFile = ".github/workflows/pages.yml";
+const submissionWorkflowFile = ".github/workflows/site-submission.yml";
+const submissionScriptFile = "scripts/apply-site-submission.mjs";
 const requiredFiles = [
   "index.html",
   "assets/app.js",
@@ -18,6 +20,8 @@ const requiredFiles = [
   "README.md",
   jsonFile,
   workflowFile,
+  submissionWorkflowFile,
+  submissionScriptFile,
 ];
 
 for (const file of requiredFiles) {
@@ -28,6 +32,8 @@ for (const file of requiredFiles) {
 const index = read("index.html");
 const app = read("assets/app.js");
 const workflow = read(workflowFile);
+const submissionWorkflow = read(submissionWorkflowFile);
+const submissionScript = read(submissionScriptFile);
 const data = JSON.parse(read(jsonFile));
 
 assert(index.includes("data/sites.json"), "index.html should preload data/sites.json");
@@ -53,5 +59,9 @@ for (const group of data.siteGroups) {
 assert(workflow.includes("actions/deploy-pages"), "workflow should deploy with GitHub Pages action");
 assert(workflow.includes("actions/configure-pages"), "workflow should configure GitHub Pages");
 assert(workflow.includes("node scripts/validate-site.mjs"), "workflow should run the site validator");
+assert(submissionWorkflow.includes("issues:"), "site submission workflow should run from issues");
+assert(submissionWorkflow.includes("gh pr create"), "site submission workflow should create a pull request");
+assert(submissionWorkflow.includes("contents: write"), "site submission workflow should be able to push a branch");
+assert(submissionScript.includes("parseIssueSubmission"), "site submission script should parse issue submissions");
 
 console.log("site validation passed");
