@@ -1,4 +1,6 @@
 import { readFileSync, writeFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const jsonBlockPattern = /```json\s*([\s\S]*?)\s*```/i;
 const groupPattern = /^Group:\s*(.+)$/im;
@@ -47,7 +49,7 @@ export const applySiteSubmission = (body, dataPath = "data/sites.json") => {
   return submission;
 };
 
-if (import.meta.url === `file:///${process.argv[1]?.replace(/\\/g, "/")}`) {
+if (process.argv[1] && resolve(fileURLToPath(import.meta.url)) === resolve(process.argv[1])) {
   const body = process.env.ISSUE_BODY;
   assert(body, "ISSUE_BODY environment variable is required");
   const result = applySiteSubmission(body);
