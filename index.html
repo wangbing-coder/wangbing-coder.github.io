@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brice94 - Personal Homepage</title>
+    <meta
+      name="description"
+      content="The personal homepage for Brice94, with maintained sites, projects, skills, and contact links."
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="Brice94 - Personal Homepage" />
+    <meta
+      property="og:description"
+      content="A clean personal homepage and site directory for Brice94."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="data/sites.json" as="fetch" crossorigin="anonymous" />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="site-header" id="top">
+      <a class="brand" href="#top" aria-label="Brice94 home">
+        <span class="brand-mark">B94</span>
+        <span>brice94.github.io</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#sites">Sites</a>
+        <a href="#add-site">Add Site</a>
+        <a href="#skills">Stack</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="status-pill" id="availability">Maintained online</p>
+          <h1 id="hero-title">Brice94</h1>
+          <p class="hero-role" id="role">Personal site maintainer</p>
+          <p class="hero-summary" id="summary">
+            A clean entry point for maintained sites, experiments, tools, and public links.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#sites">View Sites</a>
+            <a class="button secondary" href="#add-site">Add Site</a>
+            <a class="button secondary" id="github-link" href="https://github.com/brice94">GitHub</a>
+          </div>
+        </div>
+
+        <div class="signal-card" aria-label="Profile signal">
+          <div class="profile-badge">
+            <span>B94</span>
+            <strong>Static site index</strong>
+          </div>
+          <dl class="hero-stats" id="stats"></dl>
+        </div>
+      </section>
+
+      <section class="section about-grid" id="about" aria-labelledby="about-title">
+        <div>
+          <p class="section-kicker">About</p>
+          <h2 id="about-title">A personal home base for public work.</h2>
+          <p id="about-copy">
+            This page collects maintained sites, project links, experiments, and contact routes in one place.
+          </p>
+        </div>
+        <div class="feature-list" id="highlights"></div>
+      </section>
+
+      <section class="section" id="sites" aria-labelledby="sites-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Sites</p>
+            <h2 id="sites-title">Maintained Sites</h2>
+          </div>
+          <p>
+            Permanent entries live in <code>data/sites.json</code>. The form below creates a reviewed
+            GitHub issue for new site submissions.
+          </p>
+        </div>
+        <div class="site-groups" id="site-groups"></div>
+      </section>
+
+      <section class="section add-site-panel" id="add-site" aria-labelledby="add-site-title">
+        <div>
+          <p class="section-kicker">Add Site</p>
+          <h2 id="add-site-title">Add a site to this page.</h2>
+          <p>
+            This public site keeps content in GitHub. Submit a new site as a GitHub issue, review it, then
+            merge the update into <code>data/sites.json</code>.
+          </p>
+        </div>
+        <form class="site-form" id="site-form">
+          <label>
+            Site name
+            <input name="name" type="text" placeholder="Example Docs" required />
+          </label>
+          <label>
+            URL
+            <input name="url" type="url" placeholder="https://example.com" required />
+          </label>
+          <label>
+            Group
+            <select name="group" id="group-select"></select>
+          </label>
+          <label>
+            Status
+            <input name="status" type="text" value="Online" required />
+          </label>
+          <label class="wide">
+            Description
+            <textarea name="description" rows="3" placeholder="Short description for visitors." required></textarea>
+          </label>
+          <label class="wide">
+            Tags
+            <input name="tags" type="text" placeholder="Docs, Tool, GitHub Pages" />
+          </label>
+          <div class="form-actions wide">
+            <button class="button primary" type="submit">Open GitHub Issue</button>
+          </div>
+          <output class="snippet wide" id="site-snippet" aria-live="polite">
+            Fill out the form to generate a reviewed GitHub submission.
+          </output>
+        </form>
+      </section>
+
+      <section class="section split-section" id="skills" aria-labelledby="skills-title">
+        <div>
+          <p class="section-kicker">Stack</p>
+          <h2 id="skills-title">Skills and Tools</h2>
+          <p class="muted">
+            Keep the list focused on the technologies and workflows you want visitors to associate with you.
+          </p>
+        </div>
+        <div class="skill-board" id="skills-list"></div>
+      </section>
+
+      <section class="section contact-panel" id="contact" aria-labelledby="contact-title">
+        <div>
+          <p class="section-kicker">Contact</p>
+          <h2 id="contact-title">Links and Contact</h2>
+          <p id="contact-copy">Start here for source code, repositories, or collaboration.</p>
+        </div>
+        <div class="contact-links" id="contact-links"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Copyright <span id="year"></span> Brice94. Built for GitHub Pages.</p>
+      <a href="#top">Back to top</a>
+    </footer>
+
+    <script src="assets/app.js"></script>
+  </body>
+</html>
