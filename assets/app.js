@@ -1,4 +1,6 @@
 let data;
+let activeGroup = "All";
+let searchQuery = "";
 
 const text = (id, value) => {
   const element = document.getElementById(id);
@@ -25,40 +27,46 @@ const createLink = (href, label, className = "") => {
   return link;
 };
 
-const renderStats = () => {
-  const stats = document.getElementById("stats");
-  stats.innerHTML = "";
-  data.stats.forEach((item) => {
-    const wrapper = document.createElement("div");
-    const value = document.createElement("dt");
-    const label = document.createElement("dd");
-    value.textContent = item.value;
-    label.textContent = item.label;
-    wrapper.append(value, label);
-    stats.appendChild(wrapper);
-  });
+const siteMatches = (site) => {
+  if (!searchQuery) return true;
+  const haystack = [site.name, site.description, site.url, site.status, ...site.tags]
+    .join(" ")
+    .toLowerCase();
+  return haystack.includes(searchQuery);
 };
 
-const renderHighlights = () => {
-  const highlights = document.getElementById("highlights");
-  highlights.innerHTML = "";
-  data.highlights.forEach((item) => {
-    const article = document.createElement("article");
-    article.innerHTML = `<h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p>`;
-    highlights.appendChild(article);
-  });
+const visibleGroups = () =>
+  data.siteGroups
+    .filter((group) => activeGroup === "All" || group.title === activeGroup)
+    .map((group) => ({ ...group, items: group.items.filter(siteMatches) }))
+    .filter((group) => group.items.length > 0);
+
+const renderCount = (groups) => {
+  const total = data.siteGroups.reduce((count, group) => count + group.items.length, 0);
+  const shown = groups.reduce((count, group) => count + group.items.length, 0);
+  const label = shown === 1 ? "site" : "sites";
+  text("site-count", `${shown} of ${total} ${label} shown`);
 };
 
 const renderGroups = () => {
-  const groups = document.getElementById("site-groups");
-  groups.innerHTML = "";
+  const container = document.getElementById("site-groups");
+  const groups = visibleGroups();
+  container.innerHTML = "";
+  renderCount(groups);
 
-  data.siteGroups.forEach((group) => {
+  if (groups.length === 0) {
+    container.innerHTML = '<p class="empty-state">No sites match the current filters.</p>';
+    return;
+  }
+
+  groups.forEach((group) => {
     const section = document.createElement("section");
     section.className = "site-group";
+
     const heading = document.createElement("div");
     heading.className = "group-heading";
     heading.innerHTML = `<h3>${escapeHtml(group.title)}</h3><p>${escapeHtml(group.description)}</p>`;
+
     const list = document.createElement("div");
     list.className = "site-list";
 
@@ -72,39 +80,40 @@ const renderGroups = () => {
           <span class="status">${escapeHtml(site.status)}</span>
         </div>
         <p>${escapeHtml(site.description)}</p>
+        <div class="site-meta">${escapeHtml(new URL(site.url).hostname)}</div>
         <div class="tag-row">${tags}</div>
       `;
-      card.appendChild(createLink(site.url, "Visit site", "visit-link"));
+      card.appendChild(createLink(site.url, "Visit", "visit-link"));
       list.appendChild(card);
     });
 
     section.append(heading, list);
-    groups.appendChild(section);
+    container.appendChild(section);
   });
 };
 
-const renderSkills = () => {
-  const skillList = document.getElementById("skills-list");
-  skillList.innerHTML = "";
-  data.skills.forEach((skill) => {
-    const row = document.createElement("div");
-    row.className = "skill-row";
-    row.innerHTML = `
-      <div>
-        <strong>${escapeHtml(skill.name)}</strong>
-        <span>${skill.level}%</span>
-      </div>
-      <div class="meter"><i style="width: ${skill.level}%"></i></div>
-    `;
-    skillList.appendChild(row);
+const renderGroupFilters = () => {
+  const filters = document.getElementById("group-filters");
+  filters.innerHTML = "";
+  ["All", ...data.siteGroups.map((group) => group.title)].forEach((groupTitle) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = groupTitle === activeGroup ? "filter-button active" : "filter-button";
+    button.textContent = groupTitle;
+    button.addEventListener("click", () => {
+      activeGroup = groupTitle;
+      renderGroupFilters();
+      renderGroups();
+    });
+    filters.appendChild(button);
   });
 };
 
-const renderContacts = () => {
-  const contacts = document.getElementById("contact-links");
-  contacts.innerHTML = "";
-  data.contacts.forEach((item) => {
-    contacts.appendChild(createLink(item.url, item.label, "contact-link"));
+const setupSiteSearch = () => {
+  const input = document.getElementById("site-search");
+  input.addEventListener("input", () => {
+    searchQuery = input.value.trim().toLowerCase();
+    renderGroups();
   });
 };
 
@@ -156,11 +165,7 @@ const issueUrlFor = (site) => {
     "```",
   ].join("\n");
 
-  const params = new URLSearchParams({
-    title,
-    body,
-    labels: "site-submission",
-  });
+  const params = new URLSearchParams({ title, body, labels: "site-submission" });
   return `https://github.com/${repo.owner}/${repo.name}/issues/new?${params}`;
 };
 
@@ -188,10 +193,8 @@ const setupForm = () => {
 };
 
 const init = async () => {
-  const response = await fetch("data/sites.json", { cache: "no-store" });
-  if (!response.ok) {
-    throw new Error(`Unable to load data/sites.json: ${response.status}`);
-  }
+  const response = await fetch(`data/sites.json?v=${Date.now()}`, { cache: "no-store" });
+  if (!response.ok) throw new Error(`Unable to load data/sites.json: ${response.status}`);
 
   data = await response.json();
   const profile = data.profile;
@@ -200,18 +203,15 @@ const init = async () => {
   text("hero-title", profile.name);
   text("role", profile.role);
   text("summary", profile.summary);
-  text("about-copy", profile.about);
   text("year", new Date().getFullYear());
 
-  document.title = `${profile.name} - Personal Homepage`;
+  document.title = `${profile.name} - Site Directory`;
   document.querySelector(".brand span:last-child").textContent = profile.domain;
   document.getElementById("github-link").href = profile.githubUrl;
 
-  renderStats();
-  renderHighlights();
+  renderGroupFilters();
+  setupSiteSearch();
   renderGroups();
-  renderSkills();
-  renderContacts();
   renderGroupSelect();
   setupForm();
 };

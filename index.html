@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Brice94 - Personal Homepage</title>
+    <title>Brice94 - Site Directory</title>
     <meta
       name="description"
-      content="The personal homepage for Brice94, with maintained sites, projects, skills, and contact links."
+      content="A compact personal site directory for maintained sites and tools."
     />
     <meta name="theme-color" content="#ffffff" />
-    <meta property="og:title" content="Brice94 - Personal Homepage" />
+    <meta property="og:title" content="Brice94 - Site Directory" />
     <meta
       property="og:description"
-      content="A clean personal homepage and site directory for Brice94."
+      content="Maintained sites, tools, and public links."
     />
     <meta property="og:type" content="website" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -23,51 +23,27 @@
     <header class="site-header" id="top">
       <a class="brand" href="#top" aria-label="Brice94 home">
         <span class="brand-mark">B94</span>
-        <span>brice94.github.io</span>
+        <span>wangbing-coder.github.io</span>
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#about">About</a>
         <a href="#sites">Sites</a>
         <a href="#add-site">Add Site</a>
-        <a href="#skills">Stack</a>
-        <a href="#contact">Contact</a>
+        <a id="github-link" href="https://github.com/wangbing-coder">GitHub</a>
       </nav>
     </header>
 
     <main>
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="status-pill" id="availability">Maintained online</p>
-          <h1 id="hero-title">Brice94</h1>
-          <p class="hero-role" id="role">Personal site maintainer</p>
+      <section class="intro" aria-labelledby="hero-title">
+        <p class="section-kicker" id="availability">Maintained online</p>
+        <div class="intro-grid">
+          <div>
+            <h1 id="hero-title">Brice94</h1>
+            <p class="hero-role" id="role">Developer / Personal Site Maintainer</p>
+          </div>
           <p class="hero-summary" id="summary">
-            A clean entry point for maintained sites, experiments, tools, and public links.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#sites">View Sites</a>
-            <a class="button secondary" href="#add-site">Add Site</a>
-            <a class="button secondary" id="github-link" href="https://github.com/brice94">GitHub</a>
-          </div>
-        </div>
-
-        <div class="signal-card" aria-label="Profile signal">
-          <div class="profile-badge">
-            <span>B94</span>
-            <strong>Static site index</strong>
-          </div>
-          <dl class="hero-stats" id="stats"></dl>
-        </div>
-      </section>
-
-      <section class="section about-grid" id="about" aria-labelledby="about-title">
-        <div>
-          <p class="section-kicker">About</p>
-          <h2 id="about-title">A personal home base for public work.</h2>
-          <p id="about-copy">
-            This page collects maintained sites, project links, experiments, and contact routes in one place.
+            A compact directory for maintained sites, tools, experiments, and public links.
           </p>
         </div>
-        <div class="feature-list" id="highlights"></div>
       </section>
 
       <section class="section" id="sites" aria-labelledby="sites-title">
@@ -77,9 +53,16 @@
             <h2 id="sites-title">Maintained Sites</h2>
           </div>
           <p>
-            Permanent entries live in <code>data/sites.json</code>. The form below creates a reviewed
-            GitHub issue for new site submissions.
+            Entries are stored in <code>data/sites.json</code>. New submissions create a GitHub issue and PR.
           </p>
+        </div>
+                <div class="sites-toolbar" aria-label="Site filters">
+          <label class="search-field">
+            <span>Search sites</span>
+            <input id="site-search" type="search" placeholder="Search by name, URL, description, or tag" />
+          </label>
+          <div class="filter-set" id="group-filters" aria-label="Filter by group"></div>
+          <p class="site-count" id="site-count" aria-live="polite"></p>
         </div>
         <div class="site-groups" id="site-groups"></div>
       </section>
@@ -87,10 +70,9 @@
       <section class="section add-site-panel" id="add-site" aria-labelledby="add-site-title">
         <div>
           <p class="section-kicker">Add Site</p>
-          <h2 id="add-site-title">Add a site to this page.</h2>
+          <h2 id="add-site-title">Submit a site</h2>
           <p>
-            This public site keeps content in GitHub. Submit a new site as a GitHub issue, review it, then
-            merge the update into <code>data/sites.json</code>.
+            The form opens a GitHub issue. Automation turns it into a pull request for review.
           </p>
         </div>
         <form class="site-form" id="site-form">
@@ -125,26 +107,6 @@
             Fill out the form to generate a reviewed GitHub submission.
           </output>
         </form>
-      </section>
-
-      <section class="section split-section" id="skills" aria-labelledby="skills-title">
-        <div>
-          <p class="section-kicker">Stack</p>
-          <h2 id="skills-title">Skills and Tools</h2>
-          <p class="muted">
-            Keep the list focused on the technologies and workflows you want visitors to associate with you.
-          </p>
-        </div>
-        <div class="skill-board" id="skills-list"></div>
-      </section>
-
-      <section class="section contact-panel" id="contact" aria-labelledby="contact-title">
-        <div>
-          <p class="section-kicker">Contact</p>
-          <h2 id="contact-title">Links and Contact</h2>
-          <p id="contact-copy">Start here for source code, repositories, or collaboration.</p>
-        </div>
-        <div class="contact-links" id="contact-links"></div>
       </section>
     </main>
 

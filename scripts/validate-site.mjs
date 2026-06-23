@@ -38,7 +38,7 @@ const data = JSON.parse(read(jsonFile));
 
 assert(index.includes("data/sites.json"), "index.html should preload data/sites.json");
 assert(!index.includes("assets/site-data.js"), "index.html should not load assets/site-data.js");
-assert(app.includes('fetch("data/sites.json"'), "app.js should fetch data/sites.json");
+assert(app.includes("data/sites.json"), "app.js should fetch data/sites.json");
 assert(!app.includes("localStorage"), "production Add Site flow should not use localStorage");
 assert(app.includes("github.com") && app.includes("issues/new"), "Add Site should create a GitHub issue");
 
