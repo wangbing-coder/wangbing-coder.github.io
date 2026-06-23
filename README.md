@@ -1,6 +1,6 @@
-# brice94.github.io
+# wangbing-coder.github.io
 
-Static personal homepage for `brice94.github.io`.
+Static personal homepage for `wangbing-coder.github.io`.
 
 The site uses a white and blue visual system, plain HTML/CSS/JavaScript, and no build step.
 Content is stored in `data/sites.json` and deployed with GitHub Actions to GitHub Pages.
@@ -10,7 +10,7 @@ Content is stored in `data/sites.json` and deployed with GitHub Actions to GitHu
 Run a local static server. This is required because the page fetches `data/sites.json`.
 
 ```powershell
-cd C:\path\to\brice94.github.io
+cd C:\path\to\wangbing-coder.github.io
 python -m http.server 8000
 ```
 
@@ -50,7 +50,7 @@ The page includes an `Add Site` form. Because GitHub Pages is static, the form d
 
 Form behavior:
 
-- Opens a GitHub issue against `brice94/brice94.github.io`.
+- Opens a GitHub issue against `brice94/wangbing-coder.github.io`.
 - Includes a JSON snippet for the requested site entry.
 - Lets you review the submission before adding it to `data/sites.json`.
 
@@ -58,14 +58,14 @@ This avoids exposing a write token in the browser.
 
 ## Publish To GitHub Pages
 
-1. Create a GitHub repository named `brice94.github.io`.
+1. Create a GitHub repository named `wangbing-coder.github.io`.
 2. Put these files in the repository root.
-3. Commit and push to `main`.
+3. Commit and push to `master`.
 4. Open repository `Settings` -> `Pages`.
 5. Set Source to `GitHub Actions`.
-6. Push to `main`.
+6. Push to `master`.
 7. Wait for the `Validate and deploy site` workflow to finish.
-8. Open `https://brice94.github.io/`.
+8. Open `https://wangbing-coder.github.io/`.
 
 ## Recommended Maintenance Flow
 

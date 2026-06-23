@@ -1,89 +1,134 @@
 {
-  "repository": {
-    "owner": "brice94",
-    "name": "brice94.github.io",
-    "branch": "main"
-  },
-  "profile": {
-    "name": "Brice94",
-    "domain": "brice94.github.io",
-    "role": "Developer / Personal Site Maintainer",
-    "availability": "Maintained online",
-    "summary": "A clean entry point for maintained sites, experiments, tools, and public links.",
-    "about": "This page is a lightweight public directory for projects and sites. It is designed to be easy to maintain by editing one JSON file.",
-    "githubUrl": "https://github.com/brice94"
-  },
-  "stats": [
-    { "value": "01", "label": "Homepage" },
-    { "value": "03", "label": "Site groups" },
-    { "value": "100%", "label": "Static hosting" },
-    { "value": "1 file", "label": "Content edits" }
-  ],
-  "highlights": [
-    {
-      "title": "Site directory",
-      "text": "Group maintained websites, tools, and docs so visitors can find the right entry quickly."
-    },
-    {
-      "title": "GitHub-backed content",
-      "text": "Public content lives in data/sites.json and is reviewed through normal GitHub changes."
-    },
-    {
-      "title": "Pages deployment",
-      "text": "GitHub Actions validates the site data and publishes the static files to GitHub Pages."
-    }
-  ],
-  "siteGroups": [
-    {
-      "title": "Primary",
-      "description": "Main identity pages and long-lived public links.",
-      "items": [
-        {
-          "name": "brice94.github.io",
-          "description": "The personal homepage and maintained site directory.",
-          "url": "https://brice94.github.io/",
-          "status": "Online",
-          "tags": ["GitHub Pages", "Profile"]
-        }
-      ]
-    },
-    {
-      "title": "Projects",
-      "description": "Tools, demos, services, and public repositories.",
-      "items": [
-        {
-          "name": "Project Template",
-          "description": "Replace this entry with a real project name, description, and URL.",
-          "url": "https://github.com/brice94",
-          "status": "Template",
-          "tags": ["Project", "Open Source"]
-        }
-      ]
-    },
-    {
-      "title": "Notes",
-      "description": "Labs, technical notes, and experimental pages.",
-      "items": [
-        {
-          "name": "Lab Notes",
-          "description": "A placeholder for experiments, notes, or small demos.",
-          "url": "https://github.com/brice94?tab=repositories",
-          "status": "Planning",
-          "tags": ["Notes", "Labs"]
-        }
-      ]
-    }
-  ],
-  "skills": [
-    { "name": "HTML / CSS", "level": 90 },
-    { "name": "JavaScript", "level": 82 },
-    { "name": "GitHub Pages", "level": 88 },
-    { "name": "Static Sites", "level": 86 },
-    { "name": "Automation", "level": 74 }
-  ],
-  "contacts": [
-    { "label": "GitHub", "url": "https://github.com/brice94" },
-    { "label": "Repositories", "url": "https://github.com/brice94?tab=repositories" },
-    { "label": "Email", "url": "mailto:hello@example.com" }
-  ]
+    "repository":  {
+                       "owner":  "wangbing-coder",
+                       "name":  "wangbing-coder.github.io",
+                       "branch":  "master"
+                   },
+    "profile":  {
+                    "name":  "Brice94",
+                    "domain":  "wangbing-coder.github.io",
+                    "role":  "Developer / Personal Site Maintainer",
+                    "availability":  "Maintained online",
+                    "summary":  "A clean entry point for maintained sites, experiments, tools, and public links.",
+                    "about":  "This page is a lightweight public directory for projects and sites. It is designed to be easy to maintain by editing one JSON file.",
+                    "githubUrl":  "https://github.com/wangbing-coder"
+                },
+    "stats":  [
+                  {
+                      "value":  "01",
+                      "label":  "Homepage"
+                  },
+                  {
+                      "value":  "03",
+                      "label":  "Site groups"
+                  },
+                  {
+                      "value":  "100%",
+                      "label":  "Static hosting"
+                  },
+                  {
+                      "value":  "1 file",
+                      "label":  "Content edits"
+                  }
+              ],
+    "highlights":  [
+                       {
+                           "title":  "Site directory",
+                           "text":  "Group maintained websites, tools, and docs so visitors can find the right entry quickly."
+                       },
+                       {
+                           "title":  "GitHub-backed content",
+                           "text":  "Public content lives in data/sites.json and is reviewed through normal GitHub changes."
+                       },
+                       {
+                           "title":  "Pages deployment",
+                           "text":  "GitHub Actions validates the site data and publishes the static files to GitHub Pages."
+                       }
+                   ],
+    "siteGroups":  [
+                       {
+                           "title":  "Primary",
+                           "description":  "Main identity pages and long-lived public links.",
+                           "items":  [
+                                         {
+                                             "name":  "wangbing-coder.github.io",
+                                             "description":  "The personal homepage and maintained site directory.",
+                                             "url":  "https://wangbing-coder.github.io/",
+                                             "status":  "Online",
+                                             "tags":  [
+                                                          "GitHub Pages",
+                                                          "Profile"
+                                                      ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "title":  "Projects",
+                           "description":  "Tools, demos, services, and public repositories.",
+                           "items":  [
+                                         {
+                                             "name":  "Project Template",
+                                             "description":  "Replace this entry with a real project name, description, and URL.",
+                                             "url":  "https://github.com/wangbing-coder",
+                                             "status":  "Template",
+                                             "tags":  [
+                                                          "Project",
+                                                          "Open Source"
+                                                      ]
+                                         }
+                                     ]
+                       },
+                       {
+                           "title":  "Notes",
+                           "description":  "Labs, technical notes, and experimental pages.",
+                           "items":  [
+                                         {
+                                             "name":  "Lab Notes",
+                                             "description":  "A placeholder for experiments, notes, or small demos.",
+                                             "url":  "https://github.com/wangbing-coder?tab=repositories",
+                                             "status":  "Planning",
+                                             "tags":  [
+                                                          "Notes",
+                                                          "Labs"
+                                                      ]
+                                         }
+                                     ]
+                       }
+                   ],
+    "skills":  [
+                   {
+                       "name":  "HTML / CSS",
+                       "level":  90
+                   },
+                   {
+                       "name":  "JavaScript",
+                       "level":  82
+                   },
+                   {
+                       "name":  "GitHub Pages",
+                       "level":  88
+                   },
+                   {
+                       "name":  "Static Sites",
+                       "level":  86
+                   },
+                   {
+                       "name":  "Automation",
+                       "level":  74
+                   }
+               ],
+    "contacts":  [
+                     {
+                         "label":  "GitHub",
+                         "url":  "https://github.com/wangbing-coder"
+                     },
+                     {
+                         "label":  "Repositories",
+                         "url":  "https://github.com/wangbing-coder?tab=repositories"
+                     },
+                     {
+                         "label":  "Email",
+                         "url":  "mailto:hello@example.com"
+                     }
+                 ]
 }
