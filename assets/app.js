@@ -76,14 +76,13 @@ const renderGroups = () => {
       const tags = site.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("");
       card.innerHTML = `
         <div class="site-card-top">
-          <h4>${escapeHtml(site.name)}</h4>
+          <h4><a href="${escapeHtml(site.url)}" target="_blank" rel="noreferrer">${escapeHtml(site.name)}</a></h4>
           <span class="status">${escapeHtml(site.status)}</span>
         </div>
         <p>${escapeHtml(site.description)}</p>
         <div class="site-meta">${escapeHtml(new URL(site.url).hostname)}</div>
         <div class="tag-row">${tags}</div>
       `;
-      card.appendChild(createLink(site.url, "Visit", "visit-link"));
       list.appendChild(card);
     });
 

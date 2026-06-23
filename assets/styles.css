@@ -289,26 +289,10 @@ h4 { margin-bottom: 0; font-size: 1rem; }
   font-size: 0.78rem;
 }
 
-.button,
-.visit-link {
-  border: 1px solid var(--blue);
-  text-decoration: none;
-  font-weight: 800;
-  transition: transform 160ms ease, background 160ms ease;
-}
-
 .button { padding: 10px 14px; }
-.visit-link {
-  display: inline-flex;
-  width: max-content;
-  margin-top: 12px;
-  padding: 8px 11px;
-  color: var(--blue);
-  background: var(--white);
-}
-
-.button:hover,
-.visit-link:hover { transform: translateY(-1px); background: var(--soft); }
+.button:hover { transform: translateY(-1px); background: var(--soft); }
+.site-card h4 a { color: var(--ink); text-decoration: none; }
+.site-card h4 a:hover { color: var(--blue); text-decoration: underline; }
 .primary { background: var(--blue); color: var(--white); }
 .primary:hover { color: var(--blue); }
 
